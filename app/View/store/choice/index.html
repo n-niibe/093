@@ -31,45 +31,47 @@
 
                   //配列作成→PHPから配列を受け取る
                   var data = new Array();
-                  data.push({lat:'35.681382', lng:'139.766084',name:'東京駅'});
-                  data.push({lat:'35.684801', lng:'139.766086',name:'大手町駅'});
+                  data.push({lat:'35.681382', lng:'139.766084',name:'東京駅',id:'1'});
+                  data.push({lat:'35.684801', lng:'139.766086',name:'大手町駅',id:'2'});
+
                   //bodyのmapを取得
                   var map = new google.maps.Map(document.getElementById('map'), options);
                   //windowカスタマイズ
-                  var contentString = '<div id="content">'+
-                        '<div id="siteNotice">'+
-                        '</div>'+
-                        '<h2 id="firstHeading" class="firstHeading">Uluru</h2>'+
-                        '<div id="bodyContent">'+
-                        '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-                        'sandstone rock formation in the southern part of the '+
-                        'Northern Territory, central Australia. It lies 335 km (208 mi) '+
-                        'south west of the nearest large town, Alice Springs; 450 km '+
-                        '(280 mi) by road. Kata Tjuta and Uluru are the two major '+
-                        'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-                        'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-                        'Aboriginal people of the area. It has many springs, waterholes, '+
-                        'rock caves and ancient paintings. Uluru is listed as a World '+
-                        'Heritage Site.</p>'+
-                        '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-                        'http://en.wikipedia.org/w/index.php?title=Uluru</a> (last visited June 22, 2009).</p>'+
-                        '</div>'+
-                        '</div>';
+                  // var contentString = '<div id="content">'+
+                  //       '<div id="siteNotice">'+
+                  //       '</div>'+
+                  //       '<h2 id="firstHeading" class="firstHeading">Uluru</h2>'+
+                  //       '<div id="bodyContent">'+
+                  //       '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+                  //       'sandstone rock formation in the southern part of the '+
+                  //       'Northern Territory, central Australia. It lies 335 km (208 mi) '+
+                  //       'south west of the nearest large town, Alice Springs; 450 km '+
+                  //       '(280 mi) by road. Kata Tjuta and Uluru are the two major '+
+                  //       'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+                  //       'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+                  //       'Aboriginal people of the area. It has many springs, waterholes, '+
+                  //       'rock caves and ancient paintings. Uluru is listed as a World '+
+                  //       'Heritage Site.</p>'+
+                  //       '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+                  //       'http://en.wikipedia.org/w/index.php?title=Uluru</a> (last visited June 22, 2009).</p>'+
+                  //       '</div>'+
+                  //       '</div>';
 
                     //ウィンドウ作成
-                    var infowindow = new google.maps.InfoWindow({
-                        content: contentString
-                    });
+                    // var infowindow = new google.maps.InfoWindow({
+                    //     content: contentString
+                    // });
 
                     //マーカー表示メソッド→PHPに渡すデータもセットする
-                    function dispInfo(marker,name) {
+                    function dispInfo(marker,name,store_id) {
                       google.maps.event.addListener(marker, 'click',
                       function(event) {
-                        infowindow.open(map,marker);
+                        new google.maps.InfoWindow({
+                          content: '<p>'+name+'</p><button type="button" name="store_id" value="'+store_id+'"><font size="2">ここを登録する</font><font size="5" color="#333399"></font></button>'
+                        }).open(marker.getMap(), marker);
                       });
                     }
 
-                    //マーカー作成→PHPに渡すデータもセットする
                     var markers = new Array();
                     for (i = 0; i < data.length; i++) {
                     markers[i] = new google.maps.Marker({
@@ -77,7 +79,7 @@
                         (data[i].lat, data[i].lng),
                      map: map
                     });
-                    dispInfo(markers[i],data[i].name);
+                    dispInfo(markers[i],data[i].name,data[i].id);
                    }
               }, function(e) {
                   document.getElementById('message').innerHTML = typeof e == 'string' ? e : e.message;
