@@ -4,15 +4,19 @@ App::uses('Controller', 'Controller');
 
 class StoreController extends Controller {
 	public function register(){
-		$this->loadModel('Users');
+		$this->loadModel('Stores');
 		
 		if($this->request->is('post')){
-			$store_name = $this->request->data['store_name'];
-			$store_name = 'hoge';//TODO debug
-		
-			$this->Users->save(array(
-    			'name'=>$store_name,
-			));
+			$name = $this->request->data['store_name'];
+                        $password = $this->request->data['password'];
+                        $address = $this->request->data['address'];
+                        $tw_account = $this->request->data['twitter'];		
+			$this->Stores->save(array(
+                            'name'=>$name,
+                            'password'=>$password,
+                            'address'=>$address,
+                            'twitter'=>$tw_account
+                        ));
 		}
 	}
 	

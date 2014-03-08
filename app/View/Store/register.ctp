@@ -22,7 +22,7 @@ left: 50%;
 margin-left: -186px;
 margin-top: -21px;
 }
-#id, #name, #address, #twitter {
+#id, #name, #password,#address, #twitter {
 width: 100%;
 }
 #store, #user {
@@ -95,8 +95,8 @@ border-bottom: 1px solid rgba(255, 255, 255, 0.46);
 <body>
 <div id='logo'></div>
 <div id='box'>
-<input id='id' placeholder='店名'>
-<input id='name' type='password' placeholder='パスワード'>
+<input id='name' placeholder='店名'>
+<input id='password' type='password' placeholder='パスワード'>
 <input id='address' placeholder='住所'>
 <input id='twitter' placeholder='ツイッターアカウント'>
 <input type='submit' value='登録'>
