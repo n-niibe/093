@@ -95,11 +95,13 @@ border-bottom: 1px solid rgba(255, 255, 255, 0.46);
 <body>
 <div id='logo'></div>
 <div id='box'>
+<form action="register">
 <input id='name' placeholder='店名'>
 <input id='password' type='password' placeholder='パスワード'>
 <input id='address' placeholder='住所'>
 <input id='twitter' placeholder='ツイッターアカウント'>
 <input type='submit' value='登録'>
+</form>
 </div>
 <div id='foot'>
 <div id='help'>使い方</div>
