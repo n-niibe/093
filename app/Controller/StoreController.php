@@ -3,8 +3,6 @@
 App::uses('Controller', 'Controller');
 
 class StoreController extends Controller {
-	public $autoRender = false;
-	
 	public function register(){
 		$this->loadModel('Users');
 		
